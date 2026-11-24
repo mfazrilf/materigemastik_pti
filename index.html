@@ -1,0 +1,2497 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Mengenal GEMASTIK & Perjalanan Menuju Finalis Nasional — Muhamad Fazril Fadhilah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    /* =============================================================
+       GLOBAL CSS VARIABLES & RESET
+       ============================================================= */
+    :root {
+      --bg-canvas: #060A14;
+      --bg-surface: #0E1628;
+      --bg-surface-elevated: #15223C;
+      --bg-surface-hover: #1E2F52;
+      --accent-cyan: #38BDF8;
+      --accent-cyan-glow: rgba(56, 189, 248, 0.35);
+      --accent-blue: #2563EB;
+      --accent-gold: #F59E0B;
+      --accent-gold-glow: rgba(245, 158, 11, 0.35);
+      --accent-emerald: #10B981;
+      --accent-rose: #F43F5E;
+      --accent-indigo: #818CF8;
+      --text-white: #FFFFFF;
+      --text-main: #F1F5F9;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-card: rgba(56, 189, 248, 0.18);
+      --border-glow: rgba(56, 189, 248, 0.45);
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* COPYABLE TEXT GUARANTEE */
+    h1, h2, h3, h4, h5, h6, p, span, li, code, pre, strong, em, div, blockquote {
+      user-select: text !important;
+      -webkit-user-select: text !important;
+    }
+    button, .dock-btn, .nav-btn, .pill-btn, .logo-svg {
+      user-select: none !important;
+      -webkit-user-select: none !important;
+    }
+
+    /* Background Cyber Grid Pattern */
+    .bg-grid-overlay {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(56, 189, 248, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.035) 1px, transparent 1px);
+      background-size: 52px 52px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Ambient Lighting */
+    .bg-ambient-glow {
+      position: fixed;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.16;
+    }
+    .ambient-1 {
+      top: -150px;
+      left: -150px;
+      background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+    }
+    .ambient-2 {
+      bottom: -150px;
+      right: -150px;
+      background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+    }
+
+    /* =============================================================
+       APP WRAPPER & 16:9 VIEWPORT CONTAINER
+       ============================================================= */
+    #app-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      z-index: 2;
+    }
+
+    /* =============================================================
+       TOPBAR BRANDING (CLEAN & MINIMAL)
+       ============================================================= */
+    .topbar {
+      height: 64px;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(8, 12, 24, 0.94);
+      backdrop-filter: blur(20px);
+      flex-shrink: 0;
+      z-index: 20;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-logos {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .logo-badge svg {
+      width: 26px;
+      height: 26px;
+    }
+    .event-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      letter-spacing: 0.5px;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 10px var(--accent-cyan);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .finalist-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+
+    /* =============================================================
+       DECK STAGE & SLIDE STRUCTURE
+       ============================================================= */
+    .deck-stage {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: calc(100vh - 128px);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 32px 56px;
+      display: none;
+      flex-direction: column;
+      opacity: 0;
+      transform: scale(0.985) translateY(8px);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    /* Header in Slide */
+    .slide-header {
+      margin-bottom: 22px;
+      flex-shrink: 0;
+    }
+    .slide-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+    }
+    .slide-title {
+      font-size: 34px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.6px;
+      line-height: 1.22;
+    }
+    .slide-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 400;
+      line-height: 1.45;
+    }
+
+    /* =============================================================
+       UNIVERSAL CARDS & CONTAINERS
+       ============================================================= */
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: 22px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover {
+      border-color: var(--border-glow);
+      box-shadow: 0 14px 40px rgba(56, 189, 248, 0.16);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .badge-cyan { background: rgba(56, 189, 248, 0.16); color: var(--accent-cyan); border: 1px solid rgba(56, 189, 248, 0.35); }
+    .badge-gold { background: rgba(245, 158, 11, 0.16); color: var(--accent-gold); border: 1px solid rgba(245, 158, 11, 0.35); }
+    .badge-emerald { background: rgba(16, 185, 129, 0.16); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.35); }
+    .badge-rose { background: rgba(244, 63, 94, 0.16); color: var(--accent-rose); border: 1px solid rgba(244, 63, 94, 0.35); }
+    .badge-indigo { background: rgba(129, 140, 248, 0.16); color: var(--accent-indigo); border: 1px solid rgba(129, 140, 248, 0.35); }
+
+    /* Vector Doodle & Illustration Containers */
+    .doodle-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(56, 189, 248, 0.25);
+      padding: 14px;
+      margin: 12px 0;
+    }
+    .doodle-container svg {
+      width: 100%;
+      height: auto;
+      max-height: 120px;
+    }
+
+    /* =============================================================
+       BOTTOM MASTER NAVIGATION BAR (CLEAN DOCK)
+       ============================================================= */
+    .bottombar {
+      height: 64px;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-subtle);
+      background: rgba(8, 12, 24, 0.96);
+      backdrop-filter: blur(20px);
+      flex-shrink: 0;
+      z-index: 20;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* Fullscreen Auto-Hide Chrome */
+    #app-container.is-fullscreen.fs-idle .topbar {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-100%);
+    }
+    #app-container.is-fullscreen.fs-idle .bottombar {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(100%);
+    }
+
+    .bottombar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14.5px;
+      color: var(--text-muted);
+    }
+    .bottombar-left strong {
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .bottombar-center {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dock-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      color: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .dock-btn:hover {
+      background: var(--accent-cyan);
+      color: #060A14;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.45);
+    }
+    .counter-pill {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--accent-cyan);
+      background: rgba(56, 189, 248, 0.12);
+      padding: 6px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      min-width: 90px;
+      text-align: center;
+    }
+    .bottombar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* =============================================================
+       CUSTOM STYLES PER SLIDE
+       ============================================================= */
+
+    /* SLIDE 1 */
+    .slide1-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: stretch;
+      flex: 1;
+    }
+    .cover-left-pane {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .cover-hero-title {
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: #FFFFFF;
+      margin-top: 10px;
+      margin-bottom: 12px;
+    }
+    .cover-hero-title .highlight {
+      background: linear-gradient(135deg, #38BDF8 0%, #818CF8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .cover-hero-subtitle {
+      font-size: 19px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      font-weight: 500;
+      border-left: 3px solid var(--accent-cyan);
+      padding-left: 16px;
+    }
+    .speaker-card-full {
+      background: linear-gradient(135deg, rgba(14, 22, 40, 0.95) 0%, rgba(21, 34, 60, 0.95) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 16px;
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .speaker-avatar-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.12);
+      border: 2px solid var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+    .speaker-meta h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+    .speaker-meta p {
+      font-size: 14.5px;
+      color: #CBD5E1;
+      line-height: 1.45;
+    }
+    .speaker-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+    .event-footer-bar {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 13.5px;
+      color: #94A3B8;
+      line-height: 1.45;
+    }
+    .event-footer-bar strong {
+      color: var(--accent-cyan);
+    }
+    .cover-right-pane {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* SLIDE 2 */
+    .slide2-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+      flex: 1;
+    }
+    .narrative-card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .narrative-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .narrative-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .narrative-text h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 5px;
+    }
+    .narrative-text p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .stats-4grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .stat-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-val {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      margin-bottom: 4px;
+    }
+    .stat-lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* SLIDE 3 */
+    .slide3-grid {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 22px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .step-cards-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+    .step-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 20px;
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .step-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-date {
+      font-size: 12px;
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+    .step-title-lg {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+    .step-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13.5px;
+      color: #CBD5E1;
+      line-height: 1.45;
+    }
+    .step-bullets li::before {
+      content: "• ";
+      color: var(--accent-cyan);
+      font-weight: bold;
+    }
+    .step-portal-pill {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent-cyan);
+      text-align: center;
+      word-break: break-all;
+    }
+    .checklist-card-lg {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px;
+    }
+    .checklist-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14.5px;
+      color: #E2E8F0;
+    }
+    .checklist-items div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* SLIDE 4 */
+    .timeline-4stages {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .timeline-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 22px;
+      position: relative;
+    }
+    .stage-tag {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      letter-spacing: 1px;
+    }
+    .stage-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin: 6px 0 10px 0;
+      line-height: 1.3;
+    }
+    .stage-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* SLIDE 5 */
+    .slide5-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.65fr;
+      gap: 26px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .cluster-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .cluster-box.highlight-cluster {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 35px rgba(56, 189, 248, 0.15);
+    }
+    .divisi-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #F1F5F9;
+    }
+    .divisi-pill.active-pill {
+      background: rgba(56, 189, 248, 0.14);
+      border-color: var(--accent-cyan);
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    /* SLIDE 6 */
+    .slide6-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .reason-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 24px;
+    }
+    .reason-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin: 8px 0 10px 0;
+      line-height: 1.3;
+    }
+    .reason-desc {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* SLIDE 7 */
+    .slide7-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 26px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .ctf-terminal {
+      background: #080D18;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 14px;
+      padding: 18px;
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      color: #38BDF8;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .terminal-circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .tc-red { background: #EF4444; }
+    .tc-yellow { background: #F59E0B; }
+    .tc-green { background: #10B981; }
+
+    /* SLIDE 8 */
+    .slide8-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .chronology-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 22px;
+    }
+    .day-badge {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent-gold);
+    }
+    .day-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin: 6px 0 10px 0;
+    }
+    .day-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* SLIDE 9 */
+    .slide9-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .strat-interactive-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      padding: 18px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .strat-interactive-card:hover, .strat-interactive-card.selected {
+      border-color: var(--accent-cyan);
+      background: var(--bg-surface-elevated);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
+    }
+    .strat-action-panel {
+      background: linear-gradient(135deg, rgba(14, 22, 40, 0.98) 0%, rgba(21, 34, 60, 0.98) 100%);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 16px;
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    /* SLIDE 10 */
+    .slide10-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 30px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .speaker-closing-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .quote-block {
+      border-left: 4px solid var(--accent-gold);
+      padding-left: 20px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .qa-clean-hero-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+    .qa-clean-hero-panel::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .qa-center-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: auto 0;
+    }
+    .qa-glow-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.1);
+      border: 2px solid rgba(56, 189, 248, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.25);
+      margin-bottom: 8px;
+    }
+    .qa-massive-title {
+      font-size: 52px;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+    .qa-massive-title .highlight-q {
+      background: linear-gradient(135deg, #38BDF8 0%, #F59E0B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .qa-lead-text {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .qa-mod-footer {
+      width: 100%;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 14px;
+      color: #FDE68A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 1024px) {
+      .slide { padding: 20px; }
+      .slide1-grid, .slide2-grid, .slide3-grid, .slide5-grid, .slide7-grid, .slide10-grid {
+        grid-template-columns: 1fr;
+      }
+      .step-cards-4col, .timeline-4stages, .slide6-grid, .slide8-grid, .slide9-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .topbar, .bottombar { padding: 0 20px; }
+    }
+    @media (max-width: 640px) {
+      .step-cards-4col, .timeline-4stages, .slide6-grid, .slide8-grid, .slide9-grid, .stats-4grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid-overlay"></div>
+  <div class="bg-ambient-glow ambient-1"></div>
+  <div class="bg-ambient-glow ambient-2"></div>
+
+  <div id="app-container">
+    <!-- Topbar Navigation -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="brand-logos">
+          <!-- Logo Kemdiktisaintek -->
+          <div class="logo-badge" title="Kemdiktisaintek / Puspresnas">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <!-- Logo UMS FKI -->
+          <div class="logo-badge" title="Universitas Muhammadiyah Surakarta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v12M6 12h12"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="event-badge">
+          <span class="pulse-dot"></span>
+          Tech Fusion 2026
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="finalist-tag">
+          ★ Finalis Nasional GEMASTIK XIX 2026
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Deck Stage -->
+    <main class="deck-stage" id="deck-stage">
+
+      <!-- ============================================================
+           SLIDE 1: COVER SLIDE
+           ============================================================ -->
+      <section class="slide active" data-slide="1">
+        <div class="slide1-grid">
+          <!-- Left Column -->
+          <div class="cover-left-pane">
+            <div>
+              <div class="slide-eyebrow">
+                KOMPETISI NASIONAL TIK MAHASISWA • PUSPRESNAS KEMDIKTI SAINTEK
+              </div>
+              <h1 class="cover-hero-title">
+                Mengenal <span class="highlight">GEMASTIK</span> &amp; Perjalanan Menuju Finalis Nasional
+              </h1>
+              <p class="cover-hero-subtitle">
+                Dari Seleksi Daring Ketat hingga Pertarungan Luring di Divisi II Keamanan Siber
+              </p>
+            </div>
+
+            <!-- Speaker Profile Card -->
+            <div class="speaker-card-full">
+              <div class="speaker-avatar-circle">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <div class="speaker-meta">
+                <h3>Muhamad Fazril Fadhilah</h3>
+                <p>Mahasiswa Semester 3 Teknik Informatika — Fakultas Komunikasi &amp; Informatika (FKI) UMS</p>
+                <div class="speaker-badge-pill">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  Tim "Pengen gemastik" • Finalis Nasional Divisi II Keamanan Siber GEMASTIK XIX 2026
+                </div>
+              </div>
+            </div>
+
+            <!-- Event Theme Context -->
+            <div class="event-footer-bar">
+              <strong>Tech Fusion 2026:</strong> <em>"Beyond Innovation: Membangun Masa Depan Berkelanjutan melalui Teknologi"</em><br>
+              <span style="color: #64748B;">Diselenggarakan oleh: Himpunan Mahasiswa Program Studi Pendidikan Teknik Informatika (HMP PTI FKIP UMS)</span>
+            </div>
+          </div>
+
+          <!-- Right Column (Hero Cyber Defense & Trophy Graphic Panel) -->
+          <div class="cover-right-pane">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px;">
+              <div>
+                <h4 style="font-size: 16px; font-weight: 800; color: #FFFFFF;">Puspresnas Kemdiktisaintek RI</h4>
+                <p style="font-size: 13px; color: var(--text-muted);">Tuan Rumah Final: BINUS University @Alam Sutera</p>
+              </div>
+              <span class="badge badge-gold">TINGKAT NASIONAL</span>
+            </div>
+
+            <!-- Vector Cyber Shield & Laurel Artwork -->
+            <div class="doodle-container" style="background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%); border-style: solid; border-color: rgba(56, 189, 248, 0.25); min-height: 160px; padding: 18px;">
+              <svg viewBox="0 0 400 160" fill="none" style="max-height: 150px;">
+                <!-- Glowing Shield -->
+                <path d="M200 15 L260 45 V95 C260 128 200 150 200 150 C200 150 140 128 140 95 V45 Z" fill="url(#shieldGrad)" stroke="#38BDF8" stroke-width="2.5" opacity="0.95"/>
+                <!-- Inner Shield Details -->
+                <path d="M200 28 L248 52 V92 C248 118 200 136 200 136 C200 136 152 118 152 92 V52 Z" fill="#060A14" stroke="#818CF8" stroke-width="1.5"/>
+                <!-- Binary Lock / Flag Core -->
+                <path d="M192 68 H208 V82 H192 Z" fill="#F59E0B"/>
+                <path d="M194 68 V62 C194 58.7 196.7 56 200 56 C203.3 56 206 58.7 206 62 V68" stroke="#F59E0B" stroke-width="2.5"/>
+                <circle cx="200" cy="74" r="2" fill="#060A14"/>
+                <path d="M200 76 V80" stroke="#060A14" stroke-width="1.5"/>
+                <!-- Cyber Nodes Left -->
+                <circle cx="100" cy="50" r="4" fill="#38BDF8"/>
+                <line x1="100" y1="50" x2="140" y2="70" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <circle cx="80" cy="110" r="4" fill="#10B981"/>
+                <line x1="80" y1="110" x2="145" y2="105" stroke="#10B981" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <!-- Cyber Nodes Right -->
+                <circle cx="300" cy="50" r="4" fill="#38BDF8"/>
+                <line x1="300" y1="50" x2="260" y2="70" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <circle cx="320" cy="110" r="4" fill="#F59E0B"/>
+                <line x1="320" y1="110" x2="255" y2="105" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <!-- Laurel Wreath Curves -->
+                <path d="M125 110 C125 130 160 148 190 152" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+                <path d="M275 110 C275 130 240 148 210 152" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+                <text x="200" y="112" fill="#38BDF8" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" text-anchor="middle" letter-spacing="2">01000111 01000101 01001101</text>
+                <defs>
+                  <linearGradient id="shieldGrad" x1="140" y1="15" x2="260" y2="150" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#2563EB"/>
+                    <stop offset="1" stop-color="#0E1628"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <!-- 4 Prestige Pillars Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 12px;">
+                <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; flex-shrink: 0;">11</div>
+                <div>
+                  <h5 style="font-size: 14px; font-weight: 700; color: #FFFFFF;">11 Divisi</h5>
+                  <p style="font-size: 12px; color: var(--text-muted);">Kompetisi TIK Nasional</p>
+                </div>
+              </div>
+
+              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 12px;">
+                <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; flex-shrink: 0;">20</div>
+                <div>
+                  <h5 style="font-size: 14px; font-weight: 700; color: #FFFFFF;">Top 20 Tim</h5>
+                  <p style="font-size: 12px; color: var(--text-muted);">Finalis Nasional Lolos</p>
+                </div>
+              </div>
+
+              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 12px;">
+                <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(245, 158, 11, 0.15); color: #FBBF24; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">🏆</div>
+                <div>
+                  <h5 style="font-size: 14px; font-weight: 700; color: #FFFFFF;">Piala Bergilir</h5>
+                  <p style="font-size: 12px; color: var(--text-muted);">"Samyakbya Padesa Widya"</p>
+                </div>
+              </div>
+
+              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 12px;">
+                <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">✓</div>
+                <div>
+                  <h5 style="font-size: 14px; font-weight: 700; color: #FFFFFF;">SIMKATMAWA</h5>
+                  <p style="font-size: 12px; color: var(--text-muted);">Poin Akreditasi Kampus</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SLIDE 2: APA ITU GEMASTIK?
+           ============================================================ -->
+      <section class="slide" data-slide="2">
+        <div class="slide-header">
+          <div class="slide-eyebrow">PENGENALAN KOMPETISI NASIONAL</div>
+          <h2 class="slide-title">Apa Itu GEMASTIK?</h2>
+          <p class="slide-subtitle">Ajang tahunan talenta digital mahasiswa paling bergengsi di Indonesia di bawah naungan Kemdiktisaintek RI</p>
+        </div>
+
+        <div class="slide2-grid">
+          <!-- Narrative Column -->
+          <div class="narrative-card-list">
+            <div class="narrative-item">
+              <div class="narrative-icon" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="narrative-text">
+                <h4>Penyelenggara &amp; Naungan Resmi</h4>
+                <p>GEMASTIK (Pagelaran Mahasiswa Nasional Bidang TIK) diselenggarakan secara resmi oleh <strong>Balai Pengembangan Talenta Indonesia (BPTI / Puspresnas)</strong>, Kementerian Pendidikan Tinggi, Sains, dan Teknologi RI bekerja sama dengan perguruan tinggi tuan rumah (BINUS University @Alam Sutera Tangerang).</p>
+              </div>
+            </div>
+
+            <div class="narrative-item">
+              <div class="narrative-icon" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-gold);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+              </div>
+              <div class="narrative-text">
+                <h4>Prestise Tertinggi: Piala "Samyakbya Padesa Widya"</h4>
+                <p>Mempertaruhkan piala bergilir juara umum yang bermakna <em>"Informasi yang Benar untuk Pengetahuan Luhur"</em>. Diikuti oleh ribuan delegasi dari PTN &amp; PTS terbaik se-Nusantara seperti UI, ITB, ITS, UGM, BINUS, dan UMS.</p>
+              </div>
+            </div>
+
+            <div class="narrative-item">
+              <div class="narrative-icon" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+              </div>
+              <div class="narrative-text">
+                <h4>Keselarasan Visi &amp; Tema Berkelanjutan</h4>
+                <p>Tema GEMASTIK XIX <em>"Berdampak, Inklusif, dan Berkelanjutan menuju Masyarakat Cerdas"</em> bersinergi langsung dengan tema Tech Fusion 2026: <em>"Beyond Innovation: Membangun Masa Depan Berkelanjutan melalui Teknologi"</em>.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats & Trophy Graphic Column -->
+          <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
+            <div class="stats-4grid">
+              <div class="stat-card">
+                <div class="stat-val">18+ Thn</div>
+                <div class="stat-lbl">Sejarah &amp; Tradisi Ajang</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val">11</div>
+                <div class="stat-lbl">Divisi Bidang TIK</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val">3.000+</div>
+                <div class="stat-lbl">Tim Peserta Nasional</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val" style="color: var(--accent-gold);">Top 20</div>
+                <div class="stat-lbl">Finalis Lolos per Divisi</div>
+              </div>
+            </div>
+
+            <!-- Samyakbya Padesa Widya Vector Trophy Artwork -->
+            <div class="card" style="padding: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-color: rgba(245, 158, 11, 0.3); background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, rgba(14, 22, 40, 0.95) 75%);">
+              <svg viewBox="0 0 240 110" fill="none" style="max-height: 95px; width: 100%;">
+                <!-- Glowing Rays -->
+                <circle cx="120" cy="55" r="50" fill="url(#sunGlow)" opacity="0.4"/>
+                <!-- Trophy Body -->
+                <path d="M85 30 H155 V58 C155 75 140 85 120 85 C100 85 85 75 85 58 Z" fill="url(#goldGrad)" stroke="#FDE68A" stroke-width="2"/>
+                <path d="M72 36 C64 36 60 48 64 58 C68 66 78 70 85 70" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>
+                <path d="M168 36 C176 36 180 48 176 58 C172 66 162 70 155 70" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>
+                <!-- Base -->
+                <path d="M112 85 H128 V95 H112 Z" fill="#D97706"/>
+                <rect x="95" y="95" width="50" height="12" rx="3" fill="#78350F" stroke="#FDE68A" stroke-width="1.5"/>
+                <!-- Star & Text -->
+                <polygon points="120,44 123,51 130,52 125,57 126,64 120,60 114,64 115,57 110,52 117,51" fill="#FFFFFF"/>
+                <defs>
+                  <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+                    <stop stop-color="#F59E0B"/>
+                    <stop offset="1" stop-color="transparent"/>
+                  </radialGradient>
+                  <linearGradient id="goldGrad" x1="85" y1="30" x2="155" y2="85" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FDE68A"/>
+                    <stop offset="0.5" stop-color="#F59E0B"/>
+                    <stop offset="1" stop-color="#B45309"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div style="font-size: 13.5px; font-weight: 700; color: var(--accent-gold); margin-top: 6px;">Piala Bergilir Juara Umum</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Samyakbya Padesa Widya</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SLIDE 3: SYARAT & ALUR PENDAFTARAN
+           ============================================================ -->
+      <section class="slide" data-slide="3">
+        <div class="slide-header">
+          <div class="slide-eyebrow">PERSIAPAN ADMINISTRASI &amp; TIMELINE</div>
+          <h2 class="slide-title">Syarat &amp; Alur Pendaftaran GEMASTIK</h2>
+          <p class="slide-subtitle">Panduan langkah konkret dan tahapan administratif bagi mahasiswa UMS untuk memulai partisipasi kompetisi</p>
+        </div>
+
+        <div class="slide3-grid">
+          <!-- 4 Step Cards with Custom Illustrative Vector Doodles -->
+          <div class="step-cards-4col">
+            <!-- Step 1 -->
+            <div class="card step-card">
+              <div>
+                <div class="step-header">
+                  <div class="step-num">01</div>
+                  <span class="step-date">-</span>
+                </div>
+                <h3 class="step-title-lg">Cek PDDIKTI</h3>
+                <ul class="step-bullets">
+                  <li>Mahasiswa aktif jenjang Sarjana (S1) / Diploma (D3/D4).</li>
+                  <li>Terdaftar resmi &amp; data sinkron di PDDIKTI Kemdiktisaintek.</li>
+                  <li>Maksimal semester 8 saat babak final diselenggarakan.</li>
+                  <li>Belum pernah meraih Juara 1 di divisi yang sama sebelumnya.</li>
+                </ul>
+              </div>
+
+              <!-- Vector Doodle: Student ID & Database Sync -->
+              <div class="doodle-container">
+                <svg viewBox="0 0 160 85" fill="none">
+                  <rect x="25" y="10" width="110" height="65" rx="8" fill="#0E1628" stroke="#38BDF8" stroke-width="1.8"/>
+                  <circle cx="50" cy="38" r="14" fill="rgba(56, 189, 248, 0.2)" stroke="#38BDF8" stroke-width="1.5"/>
+                  <circle cx="50" cy="34" r="5" fill="#38BDF8"/>
+                  <path d="M42 46 C42 42 46 40 50 40 C54 40 58 42 58 46" stroke="#38BDF8" stroke-width="1.5"/>
+                  <rect x="74" y="24" width="48" height="5" rx="2" fill="#94A3B8"/>
+                  <rect x="74" y="34" width="36" height="5" rx="2" fill="#64748B"/>
+                  <rect x="74" y="44" width="42" height="5" rx="2" fill="#64748B"/>
+                  <circle cx="115" cy="58" r="9" fill="#10B981"/>
+                  <path d="M111 58 L114 61 L119 55" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <div class="step-portal-pill">pddikti.kemdiktisaintek.go.id</div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="card step-card">
+              <div>
+                <div class="step-header">
+                  <div class="step-num">02</div>
+                  <span class="step-date">-</span>
+                </div>
+                <h3 class="step-title-lg">Bentuk Tim &amp; Dosen</h3>
+                <ul class="step-bullets">
+                  <li>Membentuk tim beranggotakan 3 mahasiswa dari UMS.</li>
+                  <li>Boleh kolaborasi lintas angkatan (misal: 2025 &amp; 2026).</li>
+                  <li>Tentukan 1 Ketua Tim penanggung jawab akun.</li>
+                  <li>1 Dosen Pembimbing aktif UMS dengan NIDN/NIDK resmi.</li>
+                </ul>
+              </div>
+
+              <!-- Vector Doodle: 3-Person Team & Mentor -->
+              <div class="doodle-container">
+                <svg viewBox="0 0 160 85" fill="none">
+                  <!-- Mentor with Grad Cap -->
+                  <circle cx="80" cy="22" r="10" fill="rgba(245, 158, 11, 0.2)" stroke="#F59E0B" stroke-width="1.5"/>
+                  <polygon points="80,10 92,16 80,20 68,16" fill="#F59E0B"/>
+                  <!-- Student 1 -->
+                  <circle cx="42" cy="52" r="11" fill="rgba(56, 189, 248, 0.2)" stroke="#38BDF8" stroke-width="1.5"/>
+                  <!-- Student 2 (Center) -->
+                  <circle cx="80" cy="50" r="13" fill="rgba(56, 189, 248, 0.3)" stroke="#38BDF8" stroke-width="2"/>
+                  <!-- Student 3 -->
+                  <circle cx="118" cy="52" r="11" fill="rgba(56, 189, 248, 0.2)" stroke="#38BDF8" stroke-width="1.5"/>
+                  <!-- Interconnecting Lines -->
+                  <line x1="52" y1="52" x2="68" y2="50" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="2 2"/>
+                  <line x1="92" y1="50" x2="108" y2="52" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="2 2"/>
+                  <line x1="80" y1="32" x2="80" y2="37" stroke="#F59E0B" stroke-width="1.5"/>
+                </svg>
+              </div>
+
+              <div class="step-portal-pill">Formasi: 3 Mhs + 1 Dosen NIDN</div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="card step-card">
+              <div>
+                <div class="step-header">
+                  <div class="step-num">03</div>
+                  <span class="step-date">-</span>
+                </div>
+                <h3 class="step-title-lg">Aktivasi Operator PT</h3>
+                <ul class="step-bullets">
+                  <li>Pendaftaran awal oleh Operator PT (Biro Kemahasiswaan UMS).</li>
+                  <li>Operator memverifikasi keabsahan mahasiswa &amp; dosen.</li>
+                  <li>Aktivasi kredensial login ketua tim di portal nasional.</li>
+                  <li>Persetujuan resmi delegasi universitas ke Puspresnas.</li>
+                </ul>
+              </div>
+
+              <!-- Vector Doodle: Portal Security & Access Key -->
+              <div class="doodle-container">
+                <svg viewBox="0 0 160 85" fill="none">
+                  <!-- Campus Building -->
+                  <rect x="25" y="24" width="45" height="48" rx="4" fill="#0E1628" stroke="#818CF8" stroke-width="1.5"/>
+                  <rect x="33" y="32" width="8" height="8" fill="#818CF8" opacity="0.6"/>
+                  <rect x="50" y="32" width="8" height="8" fill="#818CF8" opacity="0.6"/>
+                  <rect x="33" y="46" width="8" height="8" fill="#818CF8" opacity="0.6"/>
+                  <rect x="50" y="46" width="8" height="8" fill="#818CF8" opacity="0.6"/>
+                  <rect x="42" y="60" width="12" height="12" fill="#38BDF8"/>
+                  <!-- Arrow & Key / Lock -->
+                  <path d="M78 48 L95 48" stroke="#38BDF8" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="118" cy="46" r="16" fill="rgba(16, 185, 129, 0.15)" stroke="#10B981" stroke-width="1.8"/>
+                  <!-- Padlock -->
+                  <rect x="111" y="44" width="14" height="12" rx="2" fill="#10B981"/>
+                  <path d="M114 44 V39 C114 36.8 115.8 35 118 35 C120.2 35 122 36.8 122 39 V44" stroke="#10B981" stroke-width="2"/>
+                </svg>
+              </div>
+
+              <div class="step-portal-pill">gemastik.kemdiktisaintek.go.id</div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="card step-card">
+              <div>
+                <div class="step-header">
+                  <div class="step-num">04</div>
+                  <span class="step-date">-</span>
+                </div>
+                <h3 class="step-title-lg">Submit Berkas &amp; Karya</h3>
+                <ul class="step-bullets">
+                  <li>Lengkapi biodata anggota, scan KTM, dan foto formal.</li>
+                  <li>Unggah Surat Tugas Rektorat &amp; Lembar Pengesahan NIDN.</li>
+                  <li>Unggah proposal karya/dokumen teknis sesuai panduan divisi.</li>
+                  <li>Kunci data sebelum penutupan portal (23.59 WIB).</li>
+                </ul>
+              </div>
+
+              <!-- Vector Doodle: Cloud Upload & Countdown Clock -->
+              <div class="doodle-container">
+                <svg viewBox="0 0 160 85" fill="none">
+                  <!-- Cloud -->
+                  <path d="M45 52 C35 52 30 44 34 35 C36 26 48 24 53 28 C58 20 74 18 82 26 C90 20 102 24 104 34 C112 36 115 46 107 52 Z" fill="#0E1628" stroke="#38BDF8" stroke-width="1.8"/>
+                  <!-- Upload Arrow -->
+                  <path d="M70 48 L70 32 M63 38 L70 31 L77 38" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Clock 23:59 -->
+                  <circle cx="125" cy="40" r="16" fill="rgba(244, 63, 94, 0.15)" stroke="#F43F5E" stroke-width="1.8"/>
+                  <polyline points="125 30 125 40 132 40" stroke="#F43F5E" stroke-width="2" stroke-linecap="round"/>
+                  <text x="125" y="68" fill="#F43F5E" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" text-anchor="middle">23:59 WIB</text>
+                </svg>
+              </div>
+
+              <div class="step-portal-pill">Kunci Data Sebelum Deadline</div>
+            </div>
+          </div>
+
+          <!-- Document Verification & Checklist Card -->
+          <div class="card checklist-card-lg">
+            <div>
+              <span class="badge badge-gold" style="margin-bottom: 12px;">CHECKLIST DOKUMEN</span>
+              <h4 style="font-size: 17px; font-weight: 800; color: #FFFFFF; margin-bottom: 14px;">Berkas Wajib Finalis</h4>
+              
+              <!-- Stack of Documents Vector -->
+              <div class="doodle-container" style="padding: 10px; margin-bottom: 14px;">
+                <svg viewBox="0 0 140 70" fill="none">
+                  <rect x="25" y="20" width="70" height="45" rx="4" fill="#0E1628" stroke="#64748B" stroke-width="1.5" transform="rotate(-6 25 20)"/>
+                  <rect x="35" y="14" width="70" height="45" rx="4" fill="#15223C" stroke="#94A3B8" stroke-width="1.5" transform="rotate(3 35 14)"/>
+                  <rect x="35" y="10" width="70" height="48" rx="4" fill="#080D18" stroke="#38BDF8" stroke-width="1.8"/>
+                  <line x1="45" y1="22" x2="85" y2="22" stroke="#38BDF8" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="45" y1="30" x2="95" y2="30" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="45" y1="38" x2="80" y2="38" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/>
+                  <circle cx="88" cy="46" r="6" fill="#F59E0B"/>
+                </svg>
+              </div>
+
+              <div class="checklist-items">
+                <div><span style="color: var(--accent-emerald); font-weight: 800;">✓</span> Surat Tugas Resmi Pimpinan PT</div>
+                <div><span style="color: var(--accent-emerald); font-weight: 800;">✓</span> Scan Asli KTM &amp; KTP 3 Anggota</div>
+                <div><span style="color: var(--accent-emerald); font-weight: 800;">✓</span> Lembar Pengesahan Dosen NIDN</div>
+                <div><span style="color: var(--accent-emerald); font-weight: 800;">✓</span> Dokumen Teknis / Proposal Divisi</div>
+              </div>
+            </div>
+
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.35); padding: 12px; border-radius: 10px; font-size: 13px; color: #FDE68A; line-height: 1.45;">
+              <strong>Tips Delegasi UMS:</strong> Hubungi Biro Kemahasiswaan UMS minimal 2 minggu sebelum batas akhir agar verifikasi berkas kampus aman!
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SLIDE 4: PETA PERJALANAN (ROADMAP SELEKSI)
+           ============================================================ -->
+      <section class="slide" data-slide="4">
+        <div class="slide-header">
+          <div class="slide-eyebrow">ROADMAP SELEKSI BERTAHAP</div>
+          <h2 class="slide-title">Peta Perjalanan: Kualifikasi Menuju Babak Final</h2>
+          <p class="slide-subtitle">Siklus kompetisi terstruktur dari seleksi administrasi ribuan tim hingga panggung juara nasional</p>
+        </div>
+
+        <div class="timeline-4stages">
+          <!-- Stage 1 -->
+          <div class="card timeline-card">
+            <div>
+              <div class="stage-tag">TAHAP 01</div>
+              <h3 class="stage-title">Pendaftaran &amp; Administrasi</h3>
+              <p class="stage-desc">
+                Verifikasi integritas data mahasiswa di PDDIKTI, kelengkapan surat tugas universitas dari pimpinan kampus, scan kartu mahasiswa, dan validasi lembar pengesahan dosen pembimbing ber-NIDN resmi.
+              </p>
+            </div>
+
+            <!-- Vector Badge: Document Seal -->
+            <div class="doodle-container">
+              <svg viewBox="0 0 160 85" fill="none">
+                <circle cx="80" cy="42" r="28" fill="#0E1628" stroke="#38BDF8" stroke-width="2"/>
+                <circle cx="80" cy="42" r="22" stroke="#818CF8" stroke-width="1.5" stroke-dasharray="4 2"/>
+                <path d="M70 42 L77 49 L92 34" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M72 65 L66 80 L80 74 L94 80 L88 65" fill="#2563EB" opacity="0.8"/>
+              </svg>
+            </div>
+
+            <div style="background: rgba(56, 189, 248, 0.1); border-radius: 8px; padding: 10px; font-size: 13px; color: var(--accent-cyan); font-weight: 600;">
+              Eliminasi Tim jika berkas tidak valid atau data PDDIKTI tidak sinkron.
+            </div>
+          </div>
+
+          <!-- Stage 2 -->
+          <div class="card timeline-card">
+            <div>
+              <div class="stage-tag" style="color: var(--accent-gold);">TAHAP 02</div>
+              <h3 class="stage-title">Penyisihan Daring (Online)</h3>
+              <p class="stage-desc">
+                Seleksi ketat serentak se-Indonesia. Divisi teknis (Keamanan Siber &amp; Pemrograman) menjalani live CTF / competitive programming daring. Divisi karya melalui kurasi proposal, makalah, dan demo sistem.
+              </p>
+            </div>
+
+            <!-- Vector Badge: Online Server CTF Matrix -->
+            <div class="doodle-container">
+              <svg viewBox="0 0 160 85" fill="none">
+                <rect x="35" y="15" width="90" height="55" rx="6" fill="#080D18" stroke="#F59E0B" stroke-width="1.8"/>
+                <line x1="45" y1="28" x2="65" y2="28" stroke="#F59E0B" stroke-width="2"/>
+                <line x1="45" y1="38" x2="115" y2="38" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="45" y1="46" x2="95" y2="46" stroke="#94A3B8" stroke-width="1.5"/>
+                <circle cx="108" cy="27" r="4" fill="#10B981"/>
+                <circle cx="118" cy="27" r="4" fill="#38BDF8"/>
+                <path d="M60 70 L80 78 L100 70" stroke="#F59E0B" stroke-width="2"/>
+              </svg>
+            </div>
+
+            <div style="background: rgba(245, 158, 11, 0.1); border-radius: 8px; padding: 10px; font-size: 13px; color: var(--accent-gold); font-weight: 600;">
+              Hanya disaring 20 Tim Terbaik per divisi untuk tiket ke Babak Final.
+            </div>
+          </div>
+
+          <!-- Stage 3 -->
+          <div class="card timeline-card">
+            <div>
+              <div class="stage-tag" style="color: var(--accent-emerald);">TAHAP 03</div>
+              <h3 class="stage-title">Pengumuman &amp; Daftar Ulang</h3>
+              <p class="stage-desc">
+                Penerbitan Surat Keputusan (SK) resmi BPTI / Puspresnas Kemdiktisaintek. 20 tim finalis per divisi wajib melakukan konfirmasi kehadiran, penandatanganan pakta integritas, dan revisi berkas teknis.
+              </p>
+            </div>
+
+            <!-- Vector Badge: Official Star SK Puspresnas -->
+            <div class="doodle-container">
+              <svg viewBox="0 0 160 85" fill="none">
+                <polygon points="80,12 88,32 110,34 94,48 98,70 80,58 62,70 66,48 50,34 72,32" fill="url(#starGrad)" stroke="#FDE68A" stroke-width="1.5"/>
+                <circle cx="80" cy="41" r="10" fill="#060A14"/>
+                <path d="M76 41 L79 44 L85 38" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="starGrad" x1="50" y1="12" x2="110" y2="70" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#10B981"/>
+                    <stop offset="1" stop-color="#047857"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <div style="background: rgba(16, 185, 129, 0.1); border-radius: 8px; padding: 10px; font-size: 13px; color: var(--accent-emerald); font-weight: 600;">
+              SK Resmi Finalis diterbitkan dan diumumkan ke rektorat universitas.
+            </div>
+          </div>
+
+          <!-- Stage 4 -->
+          <div class="card timeline-card">
+            <div>
+              <div class="stage-tag" style="color: var(--accent-indigo);">TAHAP 04</div>
+              <h3 class="stage-title">Babak Final Nasional (Luring)</h3>
+              <p class="stage-desc">
+                Pertarungan onsite 4 hari di kampus tuan rumah (BINUS Alam Sutera). Warming-up lab, kompetisi CTF 6 jam nonstop, sidang write-up di hadapan juri nasional, hingga awarding podium juara.
+              </p>
+            </div>
+
+            <!-- Vector Badge: Podium & Champion Trophy -->
+            <div class="doodle-container">
+              <svg viewBox="0 0 160 85" fill="none">
+                <!-- Podium -->
+                <rect x="25" y="55" width="34" height="25" rx="3" fill="#15223C" stroke="#818CF8" stroke-width="1.5"/>
+                <rect x="59" y="42" width="42" height="38" rx="3" fill="#1E2F52" stroke="#F59E0B" stroke-width="2"/>
+                <rect x="101" y="60" width="34" height="20" rx="3" fill="#15223C" stroke="#818CF8" stroke-width="1.5"/>
+                <text x="42" y="72" fill="#94A3B8" font-family="'JetBrains Mono'" font-size="12" font-weight="bold" text-anchor="middle">2</text>
+                <text x="80" y="65" fill="#F59E0B" font-family="'JetBrains Mono'" font-size="16" font-weight="bold" text-anchor="middle">1</text>
+                <text x="118" y="75" fill="#94A3B8" font-family="'JetBrains Mono'" font-size="12" font-weight="bold" text-anchor="middle">3</text>
+                <!-- Mini Trophy on 1st -->
+                <path d="M72 24 H88 V34 C88 38 85 41 80 41 C75 41 72 38 72 34 Z" fill="#F59E0B"/>
+                <path d="M68 26 C64 26 64 32 68 34" stroke="#F59E0B" stroke-width="1.5"/>
+                <path d="M92 26 C96 26 96 32 92 34" stroke="#F59E0B" stroke-width="1.5"/>
+              </svg>
+            </div>
+
+            <div style="background: rgba(129, 140, 248, 0.1); border-radius: 8px; padding: 10px; font-size: 13px; color: var(--accent-indigo); font-weight: 600;">
+              Penentuan Medali Juara 1, 2, 3, Harapan, Best Attacker &amp; Defender.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SLIDE 5: 11 DIVISI GEMASTIK
+           ============================================================ -->
+      <section class="slide" data-slide="5">
+        <div class="slide-header">
+          <div class="slide-eyebrow">STRUKTUR KATEGORI LOMBA</div>
+          <h2 class="slide-title">11 Divisi GEMASTIK: Kluster Offline vs Online</h2>
+          <p class="slide-subtitle">Pemetaan format babak final berdasarkan karakteristik uji kompetensi teknis dan infrastruktur</p>
+        </div>
+
+        <div class="slide5-grid">
+          <!-- Kluster Luring (Offline) -->
+          <div class="cluster-box highlight-cluster">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(56, 189, 248, 0.25); padding-bottom: 12px;">
+              <div>
+                <span class="badge badge-cyan">KLUSTER LURING / OFFLINE</span>
+                <h3 style="font-size: 18px; font-weight: 800; color: #FFFFFF; margin-top: 6px;">Hadir Onsite di Kampus Tuan Rumah</h3>
+              </div>
+              <div style="font-size: 26px;">⚡</div>
+            </div>
+
+            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.45;">
+              Wajib hadir fisik di laboratorium kampus BINUS Alam Sutera untuk uji ketahanan teknis real-time, pengawasan lab steril, dan koneksi server lokal.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div class="divisi-pill">
+                <span><strong>Divisi I:</strong> Pemrograman (Programming)</span>
+                <span class="badge badge-cyan" style="font-size: 11px;">ICPC Style</span>
+              </div>
+
+              <div class="divisi-pill active-pill">
+                <div>
+                  <div style="font-size: 11px; color: var(--accent-gold); font-weight: 800;">★ Team: pengen gemastik | UMS</div>
+                  <strong>Divisi II:</strong> Keamanan Siber (Cyber Security)
+                </div>
+                <span class="badge badge-gold" style="font-size: 11px;">CTF Attack-Defense</span>
+              </div>
+
+              <div class="divisi-pill">
+                <span><strong>Divisi III:</strong> Penambangan Data (Data Mining)</span>
+                <span class="badge badge-cyan" style="font-size: 11px;">AI &amp; Modeling</span>
+              </div>
+            </div>
+
+            <!-- Cyber Shield Mini Vector -->
+            <div class="doodle-container" style="margin-top: auto; padding: 10px;">
+              <svg viewBox="0 0 200 60" fill="none">
+                <path d="M100 8 L125 20 V42 C125 54 100 62 100 62 C100 62 75 54 75 42 V20 Z" fill="#0E1628" stroke="#38BDF8" stroke-width="2"/>
+                <path d="M96 28 H104 V36 H96 Z" fill="#F59E0B"/>
+                <circle cx="100" cy="32" r="1.5" fill="#060A14"/>
+                <text x="100" y="52" fill="#38BDF8" font-family="'JetBrains Mono'" font-size="8" font-weight="bold" text-anchor="middle">DIVISI II FINALIS</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Kluster Daring (Online) -->
+          <div class="cluster-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px;">
+              <div>
+                <span class="badge badge-indigo">KLUSTER DARING / ONLINE</span>
+                <h3 style="font-size: 18px; font-weight: 800; color: #FFFFFF; margin-top: 6px;">Presentasi &amp; Demo Sistem via Zoom</h3>
+              </div>
+              <div style="font-size: 26px;">🌐</div>
+            </div>
+
+            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.45;">
+              Penilaian babak final berbasis presentasi karya, sidang tanya jawab proposal ilmiah, dan demonstrasi purwarupa sistem interaktif secara virtual.
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div class="divisi-pill">
+                <span><strong>Divisi IV:</strong> Desain Pengalaman Pengguna (UX Design)</span>
+              </div>
+              <div class="divisi-pill">
+                <span><strong>Divisi V:</strong> Animasi (Animation)</span>
+              </div>
+              <div class="divisi-pill">
+                <span><strong>Divisi VI:</strong> Kota Cerdas (Smart City)</span>
+              </div>
+              <div class="divisi-pill">
+                <span><strong>Divisi VII:</strong> Karya Tulis Ilmiah TIK (Scientific Paper)</span>
+              </div>
+              <div class="divisi-pill">
+                <span><strong>Divisi VIII:</strong> Pengembangan Perangkat Lunak (Software Dev)</span>
+              </div>
+              <div class="divisi-pill">
+                <span><strong>Divisi IX:</strong> Piranti Cerdas, Embedded &amp; IoT</span>
+              </div>
+              <div class="divisi-pill">
+                <span><strong>Divisi X:</strong> Pengembangan Permainan (Game Dev)</span>
+              </div>
+              <div class="divisi-pill">
+                <span><strong>Divisi XI:</strong> Pengembangan Bisnis TIK (Business Dev)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SLIDE 6: MENGAPA DIVISI I, II, III OFFLINE?
+           ============================================================ -->
+      <section class="slide" data-slide="6">
+        <div class="slide-header">
+          <div class="slide-eyebrow">ANALISIS TEKNIS &amp; REGULASI</div>
+          <h2 class="slide-title">Mengapa Divisi I, II, dan III Harus Offline?</h2>
+          <p class="slide-subtitle">Alasan mendasar pelaksanaan onsite: integritas uji, arsitektur jaringan lokal khusus, dan pembuktian langsung</p>
+        </div>
+
+        <div class="slide6-grid">
+          <!-- Reason 1 -->
+          <div class="card reason-card">
+            <div>
+              <span class="badge badge-rose">FAKTOR 01 • INTEGRITAS UJI</span>
+              <h3 class="reason-title">Pengawasan Lab Steril &amp; Anti-Kecurangan</h3>
+              <p class="reason-desc">
+                Mencegah intervensi pihak luar, <em>shadow-hacker</em> joki, atau pemanfaatan Generative AI secara terlarang. Di lab offline, seluruh peserta diawasi kamera, tanpa akses komunikasi seluler, dan dipantau langsung oleh dewan juri serta panitia nasional.
+              </p>
+            </div>
+
+            <!-- Vector Diagram: Proctored Lab & Anti-Device Shield -->
+            <div class="doodle-container">
+              <svg viewBox="0 0 200 95" fill="none">
+                <!-- CCTV Camera Top Left -->
+                <rect x="25" y="15" width="28" height="16" rx="3" fill="#080D18" stroke="#F43F5E" stroke-width="1.8"/>
+                <polygon points="53,20 65,15 65,31 53,26" fill="#F43F5E"/>
+                <circle cx="28" cy="23" r="3" fill="#EF4444"/>
+                <path d="M40 33 L60 65 M50 33 L85 65" stroke="#F43F5E" stroke-width="1" stroke-dasharray="2 2" opacity="0.6"/>
+                <!-- Workstation Desk & Participant -->
+                <rect x="75" y="48" width="85" height="35" rx="4" fill="#0E1628" stroke="#38BDF8" stroke-width="1.5"/>
+                <rect x="90" y="32" width="40" height="26" rx="3" fill="#15223C" stroke="#38BDF8" stroke-width="1.5"/>
+                <line x1="98" y1="58" x2="122" y2="58" stroke="#38BDF8" stroke-width="2"/>
+                <!-- Prohibited Phone Crossed Out -->
+                <circle cx="160" cy="25" r="14" fill="rgba(244, 63, 94, 0.15)" stroke="#F43F5E" stroke-width="1.8"/>
+                <rect x="154" y="16" width="12" height="18" rx="2" stroke="#F43F5E" stroke-width="1.5"/>
+                <line x1="150" y1="35" x2="170" y2="15" stroke="#F43F5E" stroke-width="2"/>
+              </svg>
+            </div>
+
+            <div style="background: rgba(244, 63, 94, 0.1); border-radius: 8px; padding: 10px; font-size: 13px; color: #FDA4AF; font-weight: 600;">
+              Zero tolerance untuk kecurangan. Standar kepatuhan kompetisi internasional.
+            </div>
+          </div>
+
+          <!-- Reason 2 -->
+          <div class="card reason-card">
+            <div>
+              <span class="badge badge-cyan">FAKTOR 02 • INFRASTRUKTUR</span>
+              <h3 class="reason-title">Arsitektur Jaringan Lokal &amp; Server Tertutup</h3>
+              <p class="reason-desc">
+                Simulasi serangan siber (CTF) dan <em>competitive programming</em> membutuhkan latensi ultra-rendah dan throughput gigabit. Peserta dihubungkan ke dedicated local subnet (10.10.10.1-20/24) dengan switch jaringan terkontrol dan scoring engine mandiri tanpa ketergantungan internet publik.
+              </p>
+            </div>
+
+            <!-- Vector Diagram: Isolated Gigabit Network Topology -->
+            <div class="doodle-container">
+              <svg viewBox="0 0 200 95" fill="none">
+                <!-- Local CTF Server -->
+                <rect x="25" y="30" width="42" height="36" rx="4" fill="#080D18" stroke="#38BDF8" stroke-width="1.8"/>
+                <line x1="32" y1="40" x2="48" y2="40" stroke="#38BDF8" stroke-width="2"/>
+                <line x1="32" y1="48" x2="58" y2="48" stroke="#38BDF8" stroke-width="1.5"/>
+                <circle cx="58" cy="40" r="2" fill="#10B981"/>
+                <!-- Managed Switch -->
+                <rect x="95" y="36" width="28" height="24" rx="3" fill="#15223C" stroke="#818CF8" stroke-width="1.5"/>
+                <line x1="67" y1="48" x2="95" y2="48" stroke="#38BDF8" stroke-width="2"/>
+                <!-- 3 Team Nodes -->
+                <rect x="145" y="16" width="30" height="18" rx="3" fill="#0E1628" stroke="#10B981" stroke-width="1.5"/>
+                <rect x="145" y="39" width="30" height="18" rx="3" fill="#0E1628" stroke="#10B981" stroke-width="1.5"/>
+                <rect x="145" y="62" width="30" height="18" rx="3" fill="#0E1628" stroke="#10B981" stroke-width="1.5"/>
+                <path d="M123 48 L145 25 M123 48 L145 48 M123 48 L145 71" stroke="#818CF8" stroke-width="1.5"/>
+                <text x="100" y="85" fill="#38BDF8" font-family="'JetBrains Mono'" font-size="9" font-weight="bold" text-anchor="middle">SUBNET 10.10.10.1-20/24</text>
+              </svg>
+            </div>
+
+            <div style="background: rgba(56, 189, 248, 0.1); border-radius: 8px; padding: 10px; font-size: 13px; color: var(--accent-cyan); font-weight: 600;">
+              Infrastruktur terisolasi mencegah DDoS eksternal dan packet sniffing ilegal.
+            </div>
+          </div>
+
+          <!-- Reason 3 -->
+          <div class="card reason-card">
+            <div>
+              <span class="badge badge-emerald">FAKTOR 03 • ORISINALITAS</span>
+              <h3 class="reason-title">Verifikasi Orisinalitas &amp; Sidang Juri</h3>
+              <p class="reason-desc">
+                Peserta tidak hanya mengumpulkan skor otomatis, melainkan wajib mempertanggungjawabkan alur pemecahan masalah melalui penulisan dokumen teknis (Write-Up) dan sidang tanya jawab tatap muka di depan dewan juri untuk membuktikan orisinalitas logika eksploitasi mereka.
+              </p>
+            </div>
+
+            <!-- Vector Diagram: Jury Defense Courtroom -->
+            <div class="doodle-container">
+              <svg viewBox="0 0 200 95" fill="none">
+                <!-- Jury Table & Juries -->
+                <rect x="25" y="25" width="55" height="45" rx="4" fill="#080D18" stroke="#F59E0B" stroke-width="1.8"/>
+                <circle cx="42" cy="18" r="7" fill="rgba(245, 158, 11, 0.2)" stroke="#F59E0B" stroke-width="1.5"/>
+                <circle cx="62" cy="18" r="7" fill="rgba(245, 158, 11, 0.2)" stroke="#F59E0B" stroke-width="1.5"/>
+                <text x="52" y="52" fill="#F59E0B" font-family="'Plus Jakarta Sans'" font-size="9" font-weight="bold" text-anchor="middle">JURI</text>
+                <!-- Q&A Mic & Presentation Screen -->
+                <line x1="80" y1="48" x2="115" y2="48" stroke="#94A3B8" stroke-width="2" stroke-dasharray="3 3"/>
+                <polygon points="108,44 118,48 108,52" fill="#94A3B8"/>
+                <!-- Finalist Team Presentation -->
+                <rect x="125" y="25" width="50" height="45" rx="4" fill="#0E1628" stroke="#10B981" stroke-width="1.8"/>
+                <circle cx="150" cy="18" r="7" fill="rgba(16, 185, 129, 0.2)" stroke="#10B981" stroke-width="1.5"/>
+                <text x="150" y="52" fill="#10B981" font-family="'Plus Jakarta Sans'" font-size="9" font-weight="bold" text-anchor="middle">DEFENSE</text>
+              </svg>
+            </div>
+
+            <div style="background: rgba(16, 185, 129, 0.1); border-radius: 8px; padding: 10px; font-size: 13px; color: var(--accent-emerald); font-weight: 600;">
+              Uji validitas langsung memisahkan penebak keberuntungan dari pakar sejati.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SLIDE 7: DEEP DIVE DIVISI II KEAMANAN SIBER
+           ============================================================ -->
+      <section class="slide" data-slide="7">
+        <div class="slide-header">
+          <div class="slide-eyebrow">SPESIALISASI DIVISI PEMATERI</div>
+          <h2 class="slide-title">Deep Dive: Divisi II Keamanan Siber (Cyber Security)</h2>
+          <p class="slide-subtitle">Medan tempur peretasan etis, forensika digital, kriptografi, dan eksploitasi sistem modern</p>
+        </div>
+
+        <div class="slide7-grid">
+          <!-- Left Column: Interactive Categories -->
+          <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 14px;">
+            <div class="card" style="padding: 20px;">
+              <span class="badge badge-gold" style="margin-bottom: 12px;">FORMAT LOMBA: CAPTURE THE FLAG (CTF)</span>
+              <p style="font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px;">
+                Kompetisi menemukan celah keamanan (*vulnerability*), mengeksekusi *exploit*, dan mengamankan sistem untuk memperoleh token rahasia (<em>Flag</em>). Klik kategori di bawah untuk simulasi payload:
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button class="ctf-cat-btn active" data-cat="web" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px; background: rgba(56, 189, 248, 0.15); border: 1px solid var(--accent-cyan); color: #FFFFFF; font-weight: 700; cursor: pointer; text-align: left; font-size: 13.5px;">
+                  <span>🌐 Web Exploitation (SQLi, XSS, SSRF, IDOR)</span>
+                  <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-cyan);">PAYLOAD</span>
+                </button>
+
+                <button class="ctf-cat-btn" data-cat="crypto" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); color: #CBD5E1; font-weight: 600; cursor: pointer; text-align: left; font-size: 13.5px;">
+                  <span>🔐 Cryptography (RSA, AES Padding Oracle, ECC)</span>
+                  <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-gold);">CIPHER</span>
+                </button>
+
+                <button class="ctf-cat-btn" data-cat="pwn" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); color: #CBD5E1; font-weight: 600; cursor: pointer; text-align: left; font-size: 13.5px;">
+                  <span>💣 Binary Exploitation (Buffer Overflow, ROP, Heap)</span>
+                  <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-rose);">SHELL</span>
+                </button>
+
+                <button class="ctf-cat-btn" data-cat="forensic" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); color: #CBD5E1; font-weight: 600; cursor: pointer; text-align: left; font-size: 13.5px;">
+                  <span>🔍 Digital Forensics &amp; Steganography (PCAP, Memory)</span>
+                  <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-emerald);">PCAP</span>
+                </button>
+
+                <button class="ctf-cat-btn" data-cat="rev" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); color: #CBD5E1; font-weight: 600; cursor: pointer; text-align: left; font-size: 13.5px;">
+                  <span>⚙️ Reverse Engineering (Ghidra, IDA Pro, Binary)</span>
+                  <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-indigo);">ASM</span>
+                </button>
+              </div>
+            </div>
+
+            <div style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); padding: 12px 16px; border-radius: 12px; font-size: 13px; color: #FDE68A; display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 18px;">👑</span>
+              <div>
+                <strong>Gelar Khusus GEMASTIK:</strong> "The Best Attacker" &amp; "The Best Defender" diperebutkan di luar medali utama.
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive CTF Hacker Terminal -->
+          <div class="ctf-terminal" id="ctf-terminal-box">
+            <div>
+              <div class="terminal-header">
+                <span class="terminal-circle tc-red"></span>
+                <span class="terminal-circle tc-yellow"></span>
+                <span class="terminal-circle tc-green"></span>
+                <span style="margin-left: 8px; font-size: 12px; color: #94A3B8;">target@gemastik-ctf-lab:~/divisi-2-security</span>
+              </div>
+
+              <div id="terminal-content" style="line-height: 1.6; font-size: 13px;">
+                <p style="color: #64748B;">// Live CTF Terminal Engine — Divisi II Keamanan Siber</p>
+                <p style="color: #94A3B8;">$ curl -X POST http://10.20.0.42:8080/api/auth -d "user=admin' OR 1=1--"</p>
+                <p style="color: #38BDF8;">[+] Bypassing authentication layer... HTTP 200 OK</p>
+                <p style="color: #10B981;">[+] Session token granted: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</p>
+                <p style="color: #F59E0B;">[+] Accessing administrative restricted endpoint /flag.php</p>
+                <p style="color: #FFFFFF; font-weight: bold; background: rgba(56, 189, 248, 0.15); padding: 6px; border-radius: 4px; margin: 8px 0; border-left: 3px solid #38BDF8;">
+                  🚩 FLAG CAPTURED: GEMASTIK{sqli_auth_bypass_samyakbya_2026}
+                </p>
+                <p style="color: #38BDF8;">[+] Points added to scoreboard: +450 PTS (First Blood Bonus)</p>
+              </div>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: #64748B;">
+              <span>Scoreboard Sync: OK</span>
+              <span style="color: var(--accent-emerald);">● LIVE ATTACK ENVIRONMENT</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SLIDE 8: PENGALAMAN NYATA 4 HARI FINALIS OFFLINE
+           ============================================================ -->
+      <section class="slide" data-slide="8">
+        <div class="slide-header">
+          <div class="slide-eyebrow">STUDI KASUS NYATA DELEGASI UMS</div>
+          <h2 class="slide-title">Pengalaman Nyata: 4 Hari Finalis Offline GEMASTIK XIX</h2>
+          <p class="slide-subtitle">Catatan kronologi perjuangan Tim "Pengen gemastik" (UMS) di kampus BINUS @Alam Sutera Tangerang</p>
+        </div>
+
+        <div class="slide8-grid">
+          <!-- Day 1 -->
+          <div class="card chronology-card">
+            <div>
+              <div class="day-badge">HARI 01 • REGISTRASI &amp; SETUP</div>
+              <h3 class="day-title">Kedatangan &amp; Warming-Up Lab</h3>
+              <p class="day-desc">
+                Kedatangan delegasi nasional di kampus BINUS Alam Sutera. Registrasi fisik, pengambilan ID card resmi (lanyard), Technical Meeting peraturan CTF, serta sesi warming-up 2 jam di laboratorium untuk menguji konektivitas VPN subnet panitia.
+              </p>
+            </div>
+
+            <!-- Vector Illustration: Lanyard & Lab Workstation -->
+            <div class="doodle-container">
+              <svg viewBox="0 0 160 85" fill="none">
+                <!-- Lanyard -->
+                <path d="M40 10 L55 35 L70 10" stroke="#F59E0B" stroke-width="2"/>
+                <rect x="43" y="35" width="24" height="32" rx="3" fill="#0E1628" stroke="#F59E0B" stroke-width="1.5"/>
+                <circle cx="55" cy="46" r="4" fill="#38BDF8"/>
+                <rect x="47" y="54" width="16" height="3" fill="#94A3B8"/>
+                <rect x="49" y="59" width="12" height="2" fill="#64748B"/>
+                <!-- Workstation Screen -->
+                <rect x="85" y="24" width="55" height="36" rx="4" fill="#080D18" stroke="#38BDF8" stroke-width="1.8"/>
+                <line x1="93" y1="34" x2="115" y2="34" stroke="#38BDF8" stroke-width="1.5"/>
+                <line x1="93" y1="42" x2="130" y2="42" stroke="#10B981" stroke-width="1.5"/>
+                <line x1="105" y1="60" x2="120" y2="60" stroke="#38BDF8" stroke-width="2"/>
+              </svg>
+            </div>
+
+            <div style="background: rgba(245, 158, 11, 0.1); border-radius: 8px; padding: 10px; font-size: 13px; color: var(--accent-gold); font-weight: 600;">
+              Verifikasi kelengkapan berkas fisik &amp; uji keyboard/mouse peserta.
+            </div>
+          </div>
+
+          <!-- Day 2 -->
+          <div class="card chronology-card">
+            <div>
+              <div class="day-badge" style="color: var(--accent-rose);">HARI 02 • PERTANDINGAN UTAMA</div>
+              <h3 class="day-title">6 Jam CTF Nonstop</h3>
+              <p class="day-desc">
+                Babak final CTF intensif pukul 13.00 - 18.00 WIB. 20 tim terbaik saling salip di scoreboard digital terpusat. Strategi *first-blood*, eksploitasi celah binary, dan dekripsi cipher tingkat tinggi di bawah tekanan waktu hitung mundur.
+              </p>
+            </div>
+
+            <!-- Vector Illustration: 6-Hour Stopwatch & Scoreboard -->
+            <div class="doodle-container">
+              <svg viewBox="0 0 160 85" fill="none">
+                <!-- Stopwatch -->
+                <circle cx="50" cy="45" r="24" fill="#080D18" stroke="#F43F5E" stroke-width="2"/>
+                <polyline points="50 30 50 45 62 45" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round"/>
+                <rect x="46" y="16" width="8" height="6" fill="#F43F5E"/>
+                <!-- Scoreboard Matrix -->
+                <rect x="90" y="22" width="55" height="46" rx="4" fill="#0E1628" stroke="#38BDF8" stroke-width="1.5"/>
+                <rect x="96" y="30" width="43" height="6" rx="2" fill="#10B981" opacity="0.8"/>
+                <rect x="96" y="40" width="35" height="6" rx="2" fill="#F59E0B" opacity="0.8"/>
+                <rect x="96" y="50" width="28" height="6" rx="2" fill="#818CF8" opacity="0.8"/>
+              </svg>
+            </div>
+
+            <div style="background: rgba(244, 63, 94, 0.1); border-radius: 8px; padding: 10px; font-size: 13px; color: #FDA4AF; font-weight: 600;">
+              Adrenalin puncak saat Scoreboard di-freeze 1 jam sebelum selesai!
+            </div>
+          </div>
+
+          <!-- Day 3 -->
+          <div class="card chronology-card">
+            <div>
+              <div class="day-badge" style="color: var(--accent-cyan);">HARI 03 • WRITE-UP &amp; DEFENSE</div>
+              <h3 class="day-title">Begadang 02.00 AM &amp; Sidang Juri</h3>
+              <p class="day-desc">
+                Menyusun dokumen teknis pemecahan soal (Write-Up) hingga pukul 02.00 dini hari di hotel delegasi. Pagi harinya langsung menjalani sidang presentasi dan tanya jawab teknis di hadapan dewan juri ahli Puspresnas.
+              </p>
+            </div>
+
+            <!-- Vector Illustration: Midnight Desk Lamp & Document Binder -->
+            <div class="doodle-container">
+              <svg viewBox="0 0 160 85" fill="none">
+                <!-- Desk Lamp -->
+                <path d="M30 68 L45 25 L65 35" stroke="#F59E0B" stroke-width="2"/>
+                <polygon points="58,30 72,25 78,42 64,45" fill="#F59E0B"/>
+                <path d="M72 38 L95 68" stroke="#FDE68A" stroke-width="1" stroke-dasharray="2 2" opacity="0.5"/>
+                <!-- Document Binder -->
+                <rect x="95" y="28" width="45" height="38" rx="3" fill="#0E1628" stroke="#38BDF8" stroke-width="1.8"/>
+                <line x1="102" y1="38" x2="128" y2="38" stroke="#38BDF8" stroke-width="1.8"/>
+                <line x1="102" y1="46" x2="132" y2="46" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="102" y1="54" x2="122" y2="54" stroke="#94A3B8" stroke-width="1.5"/>
+                <text x="117" y="20" fill="#F59E0B" font-family="'JetBrains Mono'" font-size="9" font-weight="bold" text-anchor="middle">02:00 AM</text>
+              </svg>
+            </div>
+
+            <div style="background: rgba(56, 189, 248, 0.1); border-radius: 8px; padding: 10px; font-size: 13px; color: var(--accent-cyan); font-weight: 600;">
+              Juri menguji keaslian logika exploit: Apakah paham atau hanya menebak.
+            </div>
+          </div>
+
+          <!-- Day 4 -->
+          <div class="card chronology-card">
+            <div>
+              <div class="day-badge" style="color: var(--accent-emerald);">HARI 04 • CLOSING &amp; AWARDING</div>
+              <h3 class="day-title">Closing Ceremony &amp; Juara</h3>
+              <p class="day-desc">
+                Malam penganugerahan megah di Auditorium BINUS University. Pengumuman peraih medali Emas, Perak, Perunggu, Juara Harapan, Best Attacker &amp; Defender, serta penyerahan Piala Bergilir Samyakbya Padesa Widya.
+              </p>
+            </div>
+
+            <!-- Vector Illustration: Champion Podium & Trophy -->
+            <div class="doodle-container">
+              <svg viewBox="0 0 160 85" fill="none">
+                <!-- Trophy -->
+                <path d="M70 20 H90 V34 C90 40 85 44 80 44 C75 44 70 40 70 34 Z" fill="#F59E0B" stroke="#FDE68A" stroke-width="1.5"/>
+                <path d="M65 24 C60 24 60 30 65 32" stroke="#F59E0B" stroke-width="1.5"/>
+                <path d="M95 24 C100 24 100 30 95 32" stroke="#F59E0B" stroke-width="1.5"/>
+                <rect x="75" y="44" width="10" height="8" fill="#B45309"/>
+                <rect x="68" y="52" width="24" height="6" fill="#78350F"/>
+                <!-- Confetti -->
+                <circle cx="45" cy="25" r="2" fill="#38BDF8"/>
+                <circle cx="115" cy="22" r="2" fill="#10B981"/>
+                <circle cx="35" cy="45" r="2" fill="#F43F5E"/>
+                <circle cx="125" cy="45" r="2" fill="#F59E0B"/>
+                <polygon points="50,15 54,18 52,22 47,20" fill="#FDE68A"/>
+                <polygon points="110,12 114,15 111,19 107,17" fill="#818CF8"/>
+              </svg>
+            </div>
+
+            <div style="background: rgba(16, 185, 129, 0.1); border-radius: 8px; padding: 10px; font-size: 13px; color: var(--accent-emerald); font-weight: 600;">
+              Momen puncak kebanggaan mengharumkan nama almamater UMS di panggung nasional!
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SLIDE 9: PESAN & STRATEGI INTERAKTIF UNTUK MAHASISWA
+           ============================================================ -->
+      <section class="slide" data-slide="9">
+        <div class="slide-header">
+          <div class="slide-eyebrow">ACTION PLAN MAHASISWA</div>
+          <h2 class="slide-title">Pesan &amp; Strategi untuk Rekan Mahasiswa</h2>
+          <p class="slide-subtitle">Panduan langkah konkret dari Mahasiswa Semester 3 Teknik Informatika FKI</p>
+        </div>
+
+        <!-- 4 Interactive Strategy Cards -->
+        <div class="slide9-grid">
+          <div class="strat-interactive-card selected" data-strat="dini">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="badge badge-cyan">PILAR 01</span>
+              <span style="font-size: 18px;">--</span>
+            </div>
+            <div>
+              <h4 style="font-size: 16px; font-weight: 800; color: #FFFFFF; margin-bottom: 4px;">Mulai Sejak Dini</h4>
+              <p style="font-size: 13px; color: var(--text-muted);">Jangan tunggu semester akhir atau skripsi untuk mulai mencoba lomba.</p>
+            </div>
+            <div style="font-size: 12px; color: var(--accent-cyan); font-weight: 700;">➔ Klik Buka Roadmap</div>
+          </div>
+
+          <div class="strat-interactive-card" data-strat="platform">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="badge badge-gold">PILAR 02</span>
+              <span style="font-size: 18px;">--</span>
+            </div>
+            <div>
+              <h4 style="font-size: 16px; font-weight: 800; color: #FFFFFF; margin-bottom: 4px;">Latihan Mandiri</h4>
+              <p style="font-size: 13px; color: var(--text-muted);">Manfaatkan platform gratis online untuk eksplorasi CTF &amp; problem solving.</p>
+            </div>
+            <div style="font-size: 12px; color: var(--accent-gold); font-weight: 700;">➔ Klik Daftar Platform</div>
+          </div>
+
+          <div class="strat-interactive-card" data-strat="tim">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="badge badge-emerald">PILAR 03</span>
+              <span style="font-size: 18px;">--</span>
+            </div>
+            <div>
+              <h4 style="font-size: 16px; font-weight: 800; color: #FFFFFF; margin-bottom: 4px;">Formasi Triad 3 Orang</h4>
+              <p style="font-size: 13px; color: var(--text-muted);">Bagi peran tim secara spesifik: Web/Forensic, Crypto, dan Binary/Pwn.</p>
+            </div>
+            <div style="font-size: 12px; color: var(--accent-emerald); font-weight: 700;">➔ Klik Detail Formasi</div>
+          </div>
+
+          <div class="strat-interactive-card" data-strat="kampus">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="badge badge-indigo">PILAR 04</span>
+              <span style="font-size: 18px;">--</span>
+            </div>
+            <div>
+              <h4 style="font-size: 16px; font-weight: 800; color: #FFFFFF; margin-bottom: 4px;">Dukungan Kampus UMS</h4>
+              <p style="font-size: 13px; color: var(--text-muted);">Manfaatkan fasilitas lab, bimbingan dosen, dan pendanaan SIMKATMAWA.</p>
+            </div>
+            <div style="font-size: 12px; color: var(--accent-indigo); font-weight: 700;">➔ Klik Alur Kampus</div>
+          </div>
+        </div>
+
+        <!-- Dynamic Action Showcase Panel -->
+        <div class="strat-action-panel" id="strat-action-panel">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;">
+            <div style="flex: 1;">
+              <div id="strat-dynamic-badge" class="badge badge-cyan" style="margin-bottom: 8px;">ROADMAP SEMESTER 1 - 4</div>
+              <h3 id="strat-dynamic-title" style="font-size: 22px; font-weight: 800; color: #FFFFFF; margin-bottom: 8px;">
+                Belajar Fundamental Linux &amp; Networking di Semester Awal
+              </h3>
+              <p id="strat-dynamic-desc" style="font-size: 15px; color: #CBD5E1; line-height: 1.6;">
+                Sebagai mahasiswa semester 3 Teknik Informatika FKI, saya membuktikan bahwa tidak perlu menunggu semester 7 atau 8 untuk lolos ke babak final nasional. Mulailah dari menguasai command-line Linux (Ubuntu/Kali), konsep dasar jaringan TCP/IP, dan dasar script Python.
+              </p>
+            </div>
+            <div id="strat-dynamic-box-right" style="background: rgba(8, 13, 24, 0.85); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 16px 20px; min-width: 280px;">
+              <div style="font-size: 12px; font-weight: 700; color: var(--accent-cyan); margin-bottom: 6px;">ACTION CHECKLIST:</div>
+              <div id="strat-dynamic-items" style="font-size: 13.5px; color: #E2E8F0; line-height: 1.55;">
+                • Install Kali Linux di WSL2 / VirtualBox<br>
+                • Selesaikan babak pemula di OverTheWire Bandit<br>
+                • Buat catatan dokumentasi teknis (Notion/Obsidian)
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           SLIDE 10: PENUTUP & SESI TANYA JAWAB (INTERACTIVE Q&A HUB)
+           ============================================================ -->
+      <section class="slide" data-slide="10">
+        <div class="slide-header">
+          <div class="slide-eyebrow">CLOSING &amp; DISCUSSION</div>
+          <h2 class="slide-title">Penutup &amp; Sesi Tanya Jawab (Q&amp;A)</h2>
+          <p class="slide-subtitle">Refleksi akhir, komitmen masa depan, dan ruang eksplorasi interaktif bersama rekan mahasiswa</p>
+        </div>
+
+        <div class="slide10-grid">
+          <!-- Left Column: Inspiring Quote & Speaker Profile -->
+          <div class="speaker-closing-card">
+            <div>
+              <div class="quote-block">
+                "Teknologi yang hebat bukan hanya yang canggih, tapi yang aman, inklusif, dan berdampak berkelanjutan."
+              </div>
+
+              <div style="margin-top: 24px; padding-left: 20px;">
+                <h4 style="font-size: 20px; font-weight: 800; color: #FFFFFF;">Muhamad Fazril Fadhilah</h4>
+                <p style="font-size: 14.5px; color: var(--text-muted); margin-top: 4px;">Mahasiswa Semester 3 Teknik Informatika</p>
+                <p style="font-size: 14px; color: var(--accent-cyan);">Fakultas Komunikasi &amp; Informatika (FKI) — UMS</p>
+                <div style="display: inline-block; margin-top: 10px; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 6px; padding: 4px 10px; font-size: 12.5px; font-weight: 700; color: var(--accent-gold);">
+                  ★ Finalis Nasional GEMASTIK XIX 2026 (Divisi II Keamanan Siber)
+                </div>
+              </div>
+            </div>
+
+            <!-- Social / Contact Connectors -->
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between;">
+              <div style="font-size: 13.5px; color: #CBD5E1;">
+                <strong>Mari Terhubung &amp; Diskusi:</strong><br>
+                <span style="color: var(--text-muted); font-size: 12.5px;">Buka ruang kolaborasi tim delegasi UMS untuk GEMASTIK XX</span>
+              </div>
+              <span class="badge badge-cyan">GEMASTIK XIX</span>
+            </div>
+          </div>
+
+          <!-- Right Column: Sesi Tanya Jawab (Q&A) - Apakah Ada Pertanyaan? -->
+          <div class="qa-clean-hero-panel">
+            <div style="width: 100%; display: flex; justify-content: center;">
+              <span class="badge badge-cyan" style="font-size: 13px; padding: 6px 18px; letter-spacing: 1px;">
+                SESI TANYA JAWAB (Q&amp;A)
+              </span>
+            </div>
+
+            <div class="qa-center-content">
+              <div class="qa-glow-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#38BDF8"/>
+                  <path d="M9.5 9a2.5 2.5 0 0 1 4.8 1c0 1.5-2 2-2 2" stroke="#F59E0B" stroke-linecap="round"/>
+                  <circle cx="12" cy="14.5" r="0.75" fill="#F59E0B"/>
+                </svg>
+              </div>
+
+              <h2 class="qa-massive-title">
+                Apakah Ada<br><span class="highlight-q">Pertanyaan?</span>
+              </h2>
+
+              <p class="qa-lead-text">
+                Silakan angkat tangan atau sampaikan pertanyaan secara langsung. Mari berdiskusi bersama!
+              </p>
+            </div>
+
+            <div class="qa-mod-footer">
+              <span style="font-size: 18px;">*-+/</span>
+              <span><strong>Waktu &amp; Kesempatan Bertanya</strong> #Tech Fusion 2026.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Dock Navigation Bar -->
+    <footer class="bottombar">
+      <div class="bottombar-left">
+        <strong>Muhamad Fazril Fadhilah</strong> • GEMASTIK XIX 2026 (Divisi II Keamanan Siber — UMS)
+      </div>
+
+      <div class="bottombar-center">
+        <button class="dock-btn" id="btn-prev" title="Slide Sebelumnya (ArrowLeft / PageUp)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+
+        <div class="counter-pill" id="slide-counter">01 / 10</div>
+
+        <button class="dock-btn" id="btn-next" title="Slide Selanjutnya (ArrowRight / Space / PageDown)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="bottombar-right">
+        <button class="dock-btn" id="btn-fs" title="Layar Penuh (F)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Interactive Deck Logic Script -->
+  <script>
+    (function() {
+      // Elements
+      const appContainer = document.getElementById('app-container');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const counterEl = document.getElementById('slide-counter');
+      const btnPrev = document.getElementById('btn-prev');
+      const btnNext = document.getElementById('btn-next');
+      const btnFs = document.getElementById('btn-fs');
+      const totalSlides = slides.length;
+      let currentSlide = 1;
+
+      // Update slide display
+      function showSlide(index) {
+        if (index < 1) index = 1;
+        if (index > totalSlides) index = totalSlides;
+        currentSlide = index;
+
+        slides.forEach((s, idx) => {
+          if (idx + 1 === currentSlide) {
+            s.classList.add('active');
+          } else {
+            s.classList.remove('active');
+          }
+        });
+
+        const padCur = String(currentSlide).padStart(2, '0');
+        const padTot = String(totalSlides).padStart(2, '0');
+        counterEl.textContent = `${padCur} / ${padTot}`;
+
+        // Update URL hash safely without reload
+        if (history.replaceState) {
+          history.replaceState(null, null, '#slide-' + currentSlide);
+        }
+      }
+
+      function nextSlide() { showSlide(currentSlide + 1); }
+      function prevSlide() { showSlide(currentSlide - 1); }
+
+      btnPrev.addEventListener('click', prevSlide);
+      btnNext.addEventListener('click', nextSlide);
+
+      // Keyboard navigation
+      window.addEventListener('keydown', (e) => {
+        // Ignore if focus is in an input or contenteditable
+        if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
+
+        switch (e.key) {
+          case 'ArrowRight':
+          case 'ArrowDown':
+          case 'PageDown':
+          case ' ':
+            e.preventDefault();
+            nextSlide();
+            break;
+          case 'ArrowLeft':
+          case 'ArrowUp':
+          case 'PageUp':
+            e.preventDefault();
+            prevSlide();
+            break;
+          case 'Home':
+            e.preventDefault();
+            showSlide(1);
+            break;
+          case 'End':
+            e.preventDefault();
+            showSlide(totalSlides);
+            break;
+          case 'f':
+          case 'F':
+            e.preventDefault();
+            toggleFullscreen();
+            break;
+        }
+      });
+
+      // Touch swipe gestures
+      let touchStartX = 0;
+      let touchStartY = 0;
+      window.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }, { passive: true });
+
+      window.addEventListener('touchend', (e) => {
+        const diffX = e.changedTouches[0].screenX - touchStartX;
+        const diffY = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+          if (diffX < 0) nextSlide();
+          else prevSlide();
+        }
+      }, { passive: true });
+
+      // Fullscreen handling & Auto-Hide UI
+      let idleTimer = null;
+      function resetIdleTimer() {
+        if (!document.fullscreenElement) return;
+        appContainer.classList.remove('fs-idle');
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+          if (document.fullscreenElement) {
+            appContainer.classList.add('fs-idle');
+          }
+        }, 2500);
+      }
+
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.warn('Fullscreen request failed:', err);
+          });
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      }
+
+      btnFs.addEventListener('click', toggleFullscreen);
+
+      document.addEventListener('fullscreenchange', () => {
+        if (document.fullscreenElement) {
+          appContainer.classList.add('is-fullscreen');
+          resetIdleTimer();
+          window.addEventListener('mousemove', resetIdleTimer);
+        } else {
+          appContainer.classList.remove('is-fullscreen', 'fs-idle');
+          clearTimeout(idleTimer);
+          window.removeEventListener('mousemove', resetIdleTimer);
+        }
+      });
+
+      // Parse initial URL hash if exists
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#slide-')) {
+        const sNum = parseInt(hash.replace('#slide-', ''), 10);
+        if (!isNaN(sNum) && sNum >= 1 && sNum <= totalSlides) {
+          showSlide(sNum);
+        } else {
+          showSlide(1);
+        }
+      } else {
+        showSlide(1);
+      }
+
+      // ============================================================
+      // SLIDE 7: CTF TERMINAL INTERACTION
+      // ============================================================
+      const ctfCatBtns = document.querySelectorAll('.ctf-cat-btn');
+      const terminalBox = document.getElementById('terminal-content');
+
+      const ctfData = {
+        web: {
+          cmd: '$ curl -X POST http://10.20.0.42:8080/api/auth -d "user=admin\' OR 1=1--"',
+          lines: [
+            '[+] Bypassing authentication layer via SQL Injection...',
+            '[+] Session token granted: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+            '[+] Accessing administrative restricted endpoint /flag.php'
+          ],
+          flag: 'GEMASTIK{sqli_auth_bypass_samyakbya_2026}',
+          pts: '+450 PTS (First Blood)'
+        },
+        crypto: {
+          cmd: '$ python3 solver.py --target 10.20.0.88:9999 --mode rsa-wiener',
+          lines: [
+            '[*] Modulus N length: 2048 bits | Public exponent e: large (Wiener Attack candidate)',
+            '[+] Continued fractions expansion executed in 0.42s',
+            '[+] Private key d recovered! Decrypting secret ciphertext block...'
+          ],
+          flag: 'GEMASTIK{w13n3r_4tt4ck_br0k3n_d_succ3ss}',
+          pts: '+400 PTS (Solved)'
+        },
+        pwn: {
+          cmd: '$ ./exploit.py REMOTE 10.20.0.105 1337',
+          lines: [
+            '[+] Leaking libc base via puts() GOT entry: 0x7f884210a000',
+            '[+] Constructing ROP Chain: pop rdi; ret -> "/bin/sh" -> system()',
+            '[+] Spawning interactive remote root shell...'
+          ],
+          flag: 'GEMASTIK{r0p_ch41n_pwn_th3_b1n4ry_c0r3}',
+          pts: '+500 PTS (High Difficulty)'
+        },
+        forensic: {
+          cmd: '$ volatility -f memory.raw --profile=LinuxUbuntu_5_4_0_x64 linux_netstat',
+          lines: [
+            '[*] Scanning memory dump for suspicious established sockets...',
+            '[+] Reverse shell detected to C2 server 192.168.1.120:4444 [PID 3842]',
+            '[+] Extracting exfiltrated base64 memory artifact stream...'
+          ],
+          flag: 'GEMASTIK{m3m0ry_f0r3ns1cs_c2_d3t3ct3d}',
+          pts: '+350 PTS (Solved)'
+        },
+        rev: {
+          cmd: '$ ghidra --analyze check_license.elf && gdb -q ./check_license.elf',
+          lines: [
+            '[*] Disassembling validation function sym.verify_license_key',
+            '[+] XOR decryption key identified in .rodata: 0x5A',
+            '[+] Dynamic breakpoint hit at 0x004011fa; dumping register rax...'
+          ],
+          flag: 'GEMASTIK{gh1dr4_d3c0mp1l3_x0r_k3y_f0und}',
+          pts: '+400 PTS (Solved)'
+        }
+      };
+
+      ctfCatBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          ctfCatBtns.forEach(b => {
+            b.classList.remove('active');
+            b.style.background = 'rgba(255, 255, 255, 0.04)';
+            b.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+            b.style.color = '#CBD5E1';
+          });
+          btn.classList.add('active');
+          btn.style.background = 'rgba(56, 189, 248, 0.15)';
+          btn.style.borderColor = 'var(--accent-cyan)';
+          btn.style.color = '#FFFFFF';
+
+          const cat = btn.getAttribute('data-cat');
+          const data = ctfData[cat];
+          if (!data) return;
+
+          let html = `<p style="color: #64748B;">// Live CTF Terminal Engine — Divisi II Keamanan Siber</p>`;
+          html += `<p style="color: #94A3B8;">${data.cmd}</p>`;
+          data.lines.forEach(l => {
+            html += `<p style="color: #38BDF8;">${l}</p>`;
+          });
+          html += `<p style="color: #FFFFFF; font-weight: bold; background: rgba(56, 189, 248, 0.15); padding: 6px; border-radius: 4px; margin: 8px 0; border-left: 3px solid #38BDF8;">
+            🚩 FLAG CAPTURED: ${data.flag}
+          </p>`;
+          html += `<p style="color: #10B981;">[+] Points added to scoreboard: ${data.pts}</p>`;
+          terminalBox.innerHTML = html;
+        });
+      });
+
+      // ============================================================
+      // SLIDE 9: STRATEGY TOOLKIT INTERACTION
+      // ============================================================
+      const stratCards = document.querySelectorAll('.strat-interactive-card');
+      const stratBadge = document.getElementById('strat-dynamic-badge');
+      const stratTitle = document.getElementById('strat-dynamic-title');
+      const stratDesc = document.getElementById('strat-dynamic-desc');
+      const stratItems = document.getElementById('strat-dynamic-items');
+
+      const stratData = {
+        dini: {
+          badge: 'ROADMAP SEMESTER 1 - 4',
+          title: 'Belajar Fundamental Linux, Networking & Scripting Sejak Awal',
+          desc: 'Sebagai mahasiswa semester 3 Teknik Informatika FKI UMS, saya membuktikan bahwa tidak perlu menunggu semester 7 atau 8 untuk bertanding di final nasional. Kuasai command-line Linux, arsitektur TCP/IP, dan automasi Python dasar sejak awal kuliah.',
+          items: '• Install Kali Linux di WSL2 / VirtualBox<br>• Selesaikan level dasar OverTheWire Bandit (Linux CLI)<br>• Buat catatan dokumentasi teknis pemecahan masalah'
+        },
+        platform: {
+          badge: 'PLATFORM LATIHAN CTF & LAB',
+          title: 'Eksplorasi Lingkungan Praktis Terbuka & Legal',
+          desc: 'Kompetisi keamanan siber menguji jam terbang analisis. Latihlah insting melalui berbagai tantangan Capture The Flag online yang menyediakan server virtual mandiri untuk eksplorasi tanpa risiko merusak sistem asli.',
+          items: '• <strong>PicoCTF:</strong> Lab pemula terbaik untuk web & crypto<br>• <strong>TryHackMe & HackTheBox:</strong> Mesin eksploitasi real-world<br>• <strong>CTFTime.org:</strong> Jadwal kompetisi komunitas global tiap pekan'
+        },
+        tim: {
+          badge: 'STRATEGI PEMBAGIAN PERAN TIM',
+          title: 'Formasi Triad 3 Orang yang Sinergis & Komplementer',
+          desc: 'Tiga mahasiswa harus saling melengkapi, bukan memiliki keahlian yang seragam. Kolaborasi yang seimbang akan mencegah waktu habis saat menghadapi soal-soal kategori berat di babak kualifikasi maupun final.',
+          items: '• <strong>Orang 1:</strong> Spesialis Web Exploitation & Forensik Digital<br>• <strong>Orang 2:</strong> Spesialis Kriptografi & Pemrograman Algoritma<br>• <strong>Orang 3:</strong> Spesialis Reverse Engineering, Binary & Pwn'
+        },
+        kampus: {
+          badge: 'DUKUNGAN BIRO KEMAHASISWAAN UMS',
+          title: 'Manfaatkan Pembimbingan Dosen & Pendanaan SIMKATMAWA',
+          desc: 'UMS memberikan apresiasi tinggi bagi delegasi kompetisi nasional Puspresnas. Jangan ragu berkoordinasi dengan dosen pembimbing di FKI serta Biro Kemahasiswaan UMS untuk surat tugas, fasilitas riset, hingga insentif prestasi.',
+          items: '• Hubungi Dosen Pembimbing FKI yang memiliki NIDN aktif<br>• Ajukan pendaftaran akun operator ke Biro Kemahasiswaan UMS<br>• Klaim poin prestasi & konversi ekuivalensi SKS mahasiswa'
+        }
+      };
+
+      stratCards.forEach(card => {
+        card.addEventListener('click', () => {
+          stratCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          const type = card.getAttribute('data-strat');
+          const d = stratData[type];
+          if (!d) return;
+
+          stratBadge.textContent = d.badge;
+          stratTitle.textContent = d.title;
+          stratDesc.textContent = d.desc;
+          stratItems.innerHTML = d.items;
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
